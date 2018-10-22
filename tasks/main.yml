@@ -17,6 +17,7 @@
 - name: Update
   yum:
     name: '*'
+    # bugfix is handled properly in ansible 2.7, but not in 2.4
     bugfix: true
     state: latest
 
