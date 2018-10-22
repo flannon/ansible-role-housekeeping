@@ -1,8 +1,12 @@
 ---
-- name: Install epel
+- name: Install epel-release
+  yum:
+    -epel-release
+  state: latest
+
+- name: Install packages
   yum: 
     name: 
-    - epel-release
     - git
     - openssl
     - python2-pip
