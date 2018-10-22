@@ -12,13 +12,12 @@
     - openssl
     - python2-pip
     - vim-enhanced
-    #- yum-security  # This is RedHat only
     state: latest
 
 - name: Update
   yum:
     name: '*'
-    bugfix: true
+    bugfix: security
     state: latest
 
 - pip:
