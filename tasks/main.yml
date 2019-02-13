@@ -2,25 +2,26 @@
 - name: Install epel-release
   yum:
     name:
-    - epel-release
-    state: latest
+      - epel-release
+    state: present
 
 - name: Install packages
-  yum: 
-    name: 
-    - git
-    - openssl
-    - python2-pip
-    - vim-enhanced
-    state: latest
+  yum:
+    name:
+      - git
+      - openssl
+      - python2-pip
+      - vim-enhanced
+    state: present
 
 - name: Update
   yum:
     name: '*'
     # bugfix is handled properly in ansible 2.7, but not in 2.4
-    #bugfix: true
+    # bugfix: true
     state: latest
 
-- pip:
+- name: Install pip
+  pip:
     name: pip
-    state: latest
+    state: present
