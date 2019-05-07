@@ -1,0 +1,48 @@
+---
+- name: Update all packages
+  yum:
+    name: '*'
+    state: latest
+
+- name: Install high level repositories
+  yum:
+    name:
+      - epel-release
+      - centos-release-scl
+    state: latest
+
+- name: Install other packages
+  yum:
+    name:
+      - awscli
+      - bzip2-devel
+      - bind-utils
+      - centos-release-scl
+      - epel-release
+      - firewalld
+      - gdbm-devel
+      - gcc
+      - gcc-c++
+      - git
+      - htop
+      - libffi-devel
+      - libxslt-devel
+      - libyaml-devel
+      - lsof
+      - man-pages
+      - nano
+      - nfs-utils
+      - ncurses-devel
+      - make
+      - openssl-devel
+      - patch
+      - readline-devel
+      - rh-python36
+      - sqlite-devel
+      - zlib-devel
+      - unzip
+      - zip
+    state: latest
+
+- name: Reload systemd daemon
+  command: "systemctl daemon-reload"

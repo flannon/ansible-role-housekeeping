@@ -1,27 +1,4 @@
 ---
-- name: Install epel-release
-  yum:
-    name:
-      - epel-release
-    state: present
+- include_tasks: packages.yml
 
-- name: Install packages
-  yum:
-    name:
-      - git
-      - openssl
-      - python2-pip
-      - vim-enhanced
-    state: present
-
-- name: Update
-  yum:
-    name: '*'
-    # bugfix is handled properly in ansible 2.7, but not in 2.4
-    # bugfix: true
-    state: latest
-
-- name: Install pip
-  pip:
-    name: pip
-    state: present
+- include_tasks: firewall.yml
