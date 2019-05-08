@@ -6,11 +6,6 @@
       - centos-release-scl
     state: latest
 
-- name: Update all packages
-  yum:
-    name: '*'
-    state: latest
-
 - name: Install other packages
   yum:
     name:
@@ -43,6 +38,11 @@
       - zlib-devel
       - unzip
       - zip
+    state: latest
+
+- name: Update all packages
+  yum:
+    name: '*'
     state: latest
 
 - name: Enable Python 3 as default
