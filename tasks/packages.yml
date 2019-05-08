@@ -1,14 +1,14 @@
 ---
-- name: Update all packages
-  yum:
-    name: '*'
-    state: latest
-
 - name: Install high level repositories
   yum:
     name:
       - epel-release
       - centos-release-scl
+    state: latest
+
+- name: Update all packages
+  yum:
+    name: '*'
     state: latest
 
 - name: Install other packages
@@ -37,12 +37,21 @@
       - openssl-devel
       - patch
       - readline-devel
+      - python2-pip
       - rh-python36
       - sqlite-devel
       - zlib-devel
       - unzip
       - zip
     state: latest
+
+- name: Enable Python 3 as default
+  template:
+    src: rh-python36.sh.j2
+    dest: /etc/profile.d/rh-python36.sh
+
+- name: Update Python 3 pip
+  shell: "source /opt/rh/rh-python36/enable && pip install --upgrade pip"
 
 - name: Reload systemd daemon
   command: "systemctl daemon-reload"
