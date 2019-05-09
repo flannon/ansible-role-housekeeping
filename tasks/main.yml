@@ -11,3 +11,9 @@
   template:
     src: logrotate.conf.j2
     dest: /etc/logrotate.conf
+
+- name: set up motd
+  template:
+    src: motd.j2
+    dest: /etc/motd
+    mode: 777
