@@ -16,4 +16,4 @@
   template:
     src: motd.j2
     dest: /etc/motd
-    mode: 777
+    mode: 0777

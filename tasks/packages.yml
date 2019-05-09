@@ -6,38 +6,9 @@
       - centos-release-scl
     state: latest
 
-- name: Install other packages
+- name: Install standard packages
   yum:
-    name:
-      - awscli
-      - bzip2-devel
-      - bind-utils
-      - centos-release-scl
-      - epel-release
-      - firewalld
-      - gdbm-devel
-      - gcc
-      - gcc-c++
-      - git
-      - htop
-      - libffi-devel
-      - libxslt-devel
-      - libyaml-devel
-      - lsof
-      - man-pages
-      - nano
-      - nfs-utils
-      - ncurses-devel
-      - make
-      - openssl-devel
-      - patch
-      - readline-devel
-      - python2-pip
-      - rh-python36
-      - sqlite-devel
-      - zlib-devel
-      - unzip
-      - zip
+    name: "{{ housekeeping_standard_packages }}"
     state: latest
 
 - name: Update all packages
@@ -45,13 +16,28 @@
     name: '*'
     state: latest
 
+- name: Configure yum-cron
+  template:
+    src: yum-cron.conf.j2
+    dest: /etc/yum/yum-cron.conf
+  ignore_errors: true
+
+- name: Ensure yum-cron is started
+  service:
+    name: yum-cron
+    state: started
+    enabled: true
+  ignore_errors: true
+
 - name: Enable Python 3 as default
   template:
     src: rh-python36.sh.j2
     dest: /etc/profile.d/rh-python36.sh
+  ignore_errors: true
 
 - name: Update Python 3 pip
   shell: "source /opt/rh/rh-python36/enable && pip install --upgrade pip"
+  ignore_errors: true
 
 - name: Reload systemd daemon
   command: "systemctl daemon-reload"

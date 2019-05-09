@@ -11,5 +11,5 @@
     permanent: true
     immediate: true
     state: enabled
-  with_items: "{{ housekeeping_allowed_ports }}"
+  with_items: "{{ housekeeping_firewall_allowed_ports }}"
   notify: restart firewalld
