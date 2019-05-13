@@ -32,7 +32,8 @@ housekeeping_standard_packages:
   - zip
 housekeeping_firewall_allowed_ports:
   - 22
+housekeeping_server_env: dev
 housekeeping_yum_cron_update_cmd: security
-housekeeping_yum_cron_update_messages: "yes"
-housekeeping_yum_cron_download_updates: "yes"
-housekeeping_yum_cron_apply_updates: "yes"
+housekeeping_yum_cron_update_messages: "{{ 'yes' if housekeeping_server_env=='dev' else 'no' }}"
+housekeeping_yum_cron_download_updates: "{{ 'yes' if housekeeping_server_env=='dev' else 'no' }}"
+housekeeping_yum_cron_apply_updates: "{{ 'yes' if housekeeping_server_env=='dev' else 'no' }}"

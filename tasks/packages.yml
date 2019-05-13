@@ -15,6 +15,7 @@
   yum:
     name: '*'
     state: latest
+  when: housekeeping_server_env == 'dev'
 
 - name: Configure yum-cron
   template:
