@@ -1,27 +1,19 @@
 ---
-- name: Install epel-release
-  yum:
-    name:
-      - epel-release
-    state: present
+- name: set timezone to New York
+  timezone:
+    name: America/New_York
 
-- name: Install packages
-  yum:
-    name:
-      - git
-      - openssl
-      - python2-pip
-      - vim-enhanced
-    state: present
+- include_tasks: packages.yml
 
-- name: Update
-  yum:
-    name: '*'
-    # bugfix is handled properly in ansible 2.7, but not in 2.4
-    # bugfix: true
-    state: latest
+- include_tasks: firewall.yml
 
-- name: Install pip
-  pip:
-    name: pip
-    state: present
+- name: set up logrotate
+  template:
+    src: logrotate.conf.j2
+    dest: /etc/logrotate.conf
+
+- name: set up motd
+  template:
+    src: motd.j2
+    dest: /etc/motd
+    mode: 0777

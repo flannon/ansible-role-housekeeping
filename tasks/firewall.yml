@@ -1,0 +1,15 @@
+---
+- name: Ensure firewalld is running
+  service:
+    name: firewalld
+    state: started
+    enabled: true
+
+- name: Configure firewall to allow ports
+  firewalld:
+    port: "{{ item }}/tcp"
+    permanent: true
+    immediate: true
+    state: enabled
+  with_items: "{{ housekeeping_firewall_allowed_ports }}"
+  notify: restart firewalld

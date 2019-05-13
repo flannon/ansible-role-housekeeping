@@ -1,0 +1,39 @@
+---
+housekeeping_standard_packages:
+  - awscli
+  - bzip2-devel
+  - bind-utils
+  - centos-release-scl
+  - epel-release
+  - firewalld
+  - gdbm-devel
+  - gcc
+  - gcc-c++
+  - git
+  - htop
+  - libffi-devel
+  - libxslt-devel
+  - libyaml-devel
+  - lsof
+  - man-pages
+  - nano
+  - nfs-utils
+  - ncurses-devel
+  - make
+  - openssl-devel
+  - patch
+  - readline-devel
+  - python2-pip
+  - rh-python36
+  - sqlite-devel
+  - unzip
+  - yum-cron
+  - zlib-devel
+  - zip
+housekeeping_firewall_allowed_ports:
+  - 22
+housekeeping_server_env: dev
+housekeeping_yum_cron_update_cmd: security
+housekeeping_yum_cron_update_messages: "{{ 'yes' if housekeeping_server_env=='dev' else 'no' }}"
+housekeeping_yum_cron_download_updates: "{{ 'yes' if housekeeping_server_env=='dev' else 'no' }}"
+housekeeping_yum_cron_apply_updates: "{{ 'yes' if housekeeping_server_env=='dev' else 'no' }}"

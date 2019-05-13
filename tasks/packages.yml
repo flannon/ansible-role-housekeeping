@@ -1,0 +1,44 @@
+---
+- name: Install high level repositories
+  yum:
+    name:
+      - epel-release
+      - centos-release-scl
+    state: latest
+
+- name: Install standard packages
+  yum:
+    name: "{{ housekeeping_standard_packages }}"
+    state: latest
+
+- name: Update all packages
+  yum:
+    name: '*'
+    state: latest
+  when: housekeeping_server_env == 'dev'
+
+- name: Configure yum-cron
+  template:
+    src: yum-cron.conf.j2
+    dest: /etc/yum/yum-cron.conf
+  ignore_errors: true
+
+- name: Ensure yum-cron is started
+  service:
+    name: yum-cron
+    state: started
+    enabled: true
+  ignore_errors: true
+
+- name: Enable Python 3 as default
+  template:
+    src: rh-python36.sh.j2
+    dest: /etc/profile.d/rh-python36.sh
+  ignore_errors: true
+
+- name: Update Python 3 pip
+  shell: "source /opt/rh/rh-python36/enable && pip install --upgrade pip"
+  ignore_errors: true
+
+- name: Reload systemd daemon
+  command: "systemctl daemon-reload"
