@@ -15,6 +15,7 @@
   yum:
     name: '*'
     state: latest
+    exclude: ansible
   when: housekeeping_server_env == 'dev'
 
 - name: Configure yum-cron
