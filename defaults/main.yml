@@ -3,8 +3,6 @@ housekeeping_standard_packages:
   - awscli
   - bzip2-devel
   - bind-utils
-  - centos-release-scl
-  - epel-release
   - firewalld
   - gdbm-devel
   - gcc
