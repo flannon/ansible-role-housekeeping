@@ -7,15 +7,31 @@
     system: true
     gid: 200
 
-# Users
+    # Users
+#- name: Add the user 'flannon' with a specific uid and a primary group of 'flannon'
+#  user:
+#    name: "{{ item.key }}"
+#    comment: "{{ item.value.gecos }}"
+#    uid: "{{ item.value.uid }}"
+#    group: "{{ item.key }}"
+#    groups: "{{ item.value.groups }}"
+#    state: "{{ item.value.state }}"
+#    remove: "{{ item.value.remove }}"
+#  #loop: "{{ lookup('dict', users) }}"
+#  loop: "{{ dictionary|dict2items }}"
+##
 - name: Add the user 'flannon' with a specific uid and a primary group of 'flannon'
   user:
-    name: "{{ item.key }}"
-    comment: "{{ item.value.gecos }}"
-    uid: "{{ item.value.uid }}"
-    group: "{{ item.key }}"
-    groups: "{{ item.value.groups }}"
-    state: "{{ item.value.state }}"
-    remove: "{{ item.value.remove }}"
-  loop: "{{ lookup('dict', users) }}'
+    name: "{{ item.name }}"
+    comment: "{{ item.gecos }}"
+    uid: "{{ item.uid }}"
+    #group: "{{ item.name }}"
+    groups: "{{ item.groups }}"
+    state: "{{ item.state }}"
+    remove: "{{ item.remove }}"
+  with_items: "{{ users }}"
+#- name: with debug
+#  debug:
+#    msg: "User {{ item.name }}"
+#  with_items: "{{ users }}"
 
