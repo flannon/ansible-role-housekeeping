@@ -1,7 +1,5 @@
 ---
-- name: set timezone to New York
-  timezone:
-    name: America/New_York
+- include_tasks: timezone.yml
 
 - include_tasks: packages.yml
 
@@ -9,13 +7,6 @@
 
 - include_tasks: users.yml
 
-- name: set up logrotate
-  template:
-    src: logrotate.conf.j2
-    dest: /etc/logrotate.conf
+- include_tasks: logrotate.yml
 
-- name: set up motd
-  template:
-    src: motd.j2
-    dest: /etc/motd
-    mode: 0777
+- include_tasks: motd.yml
