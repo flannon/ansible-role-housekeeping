@@ -8,7 +8,7 @@
     gid: 200
 
 # Users
-- name: merge dictionary keys for users and host_users
+- name: merge dictionary keys for all elements of host_users with corresponding entries in users.
   set_fact:
     combined_user_settings: >
       {{ (combined_user_settings|default([])) + [{item: host_users[item]}] }}
