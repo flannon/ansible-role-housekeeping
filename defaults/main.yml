@@ -35,3 +35,4 @@ housekeeping_yum_cron_update_cmd: security
 housekeeping_yum_cron_update_messages: "{{ 'yes' if housekeeping_server_env=='dev' else 'no' }}"
 housekeeping_yum_cron_download_updates: "{{ 'yes' if housekeeping_server_env=='dev' else 'no' }}"
 housekeeping_yum_cron_apply_updates: "{{ 'yes' if housekeeping_server_env=='dev' else 'no' }}"
+users: {}
