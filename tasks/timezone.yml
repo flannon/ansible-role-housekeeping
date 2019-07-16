@@ -1,0 +1,4 @@
+---
+- name: set timezone to New York
+  timezone:
+    name: America/New_York

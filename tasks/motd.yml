@@ -1,0 +1,6 @@
+---
+- name: set up motd
+  template:
+    src: motd.j2
+    dest: /etc/motd
+    mode: 0777

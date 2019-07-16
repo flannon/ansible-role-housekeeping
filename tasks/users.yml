@@ -1,0 +1,31 @@
+---
+# Default groups
+- name: Ensure group dlib exists
+  group:
+    name: dlib
+    state: present
+    system: true
+    gid: 200
+
+# Users
+- name: merge dictionary keys for all elements of host_users with corresponding entries in users.
+  set_fact:
+    combined_user_settings: >
+      {{ (combined_user_settings|default([])) + [{item: host_users[item]}] }}
+  with_items: "{{ users }}"
+
+- name: write the merged dict back to the users dictionary
+  set_fact:
+    users: >
+      {{ users|combine(item, recursive=True) }}
+  with_items: "{{ combined_user_settings }}"
+
+- name: Add users
+  user:
+    name: "{{ item.key }}"
+    comment: "{{ item.value.gecos }}"
+    uid: "{{ item.value.uid }}"
+    groups: "{{ item.value.groups }}"
+    state: "{{ item.value.state }}"
+    remove: "{{ item.value.remove }}"
+  loop: "{{ users|dict2items }}"
