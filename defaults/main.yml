@@ -40,3 +40,4 @@ checkmk_version: 1.5.0p19
 checkmk_control_host: 128.122.217.206
 checkmk_site_name: mysite
 users: {}
+host_users: {}
