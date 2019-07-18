@@ -10,3 +10,5 @@
 - include_tasks: logrotate.yml
 
 - include_tasks: motd.yml
+
+- include_tasks: monitoring.yml
