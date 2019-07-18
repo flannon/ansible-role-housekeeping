@@ -12,3 +12,4 @@
 - include_tasks: motd.yml
 
 - include_tasks: monitoring.yml
+  when: '"watchtower" not in group_names' # No need to install CheckMK agent on the CheckMK control host
