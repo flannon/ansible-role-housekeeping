@@ -30,9 +30,14 @@ housekeeping_standard_packages:
   - zip
 housekeeping_firewall_allowed_ports:
   - 22
+  - 6556
 housekeeping_server_env: dev
 housekeeping_yum_cron_update_cmd: security
 housekeeping_yum_cron_update_messages: "{{ 'yes' if housekeeping_server_env=='dev' else 'no' }}"
 housekeeping_yum_cron_download_updates: "{{ 'yes' if housekeeping_server_env=='dev' else 'no' }}"
 housekeeping_yum_cron_apply_updates: "{{ 'yes' if housekeeping_server_env=='dev' else 'no' }}"
+checkmk_version: 1.5.0p19
+checkmk_control_host: watchtower.rc.it.nyu.edu
+checkmk_site_name: dlts
 users: {}
+host_users: {}
