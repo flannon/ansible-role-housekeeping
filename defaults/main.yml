@@ -37,7 +37,7 @@ housekeeping_yum_cron_update_messages: "{{ 'yes' if housekeeping_server_env=='de
 housekeeping_yum_cron_download_updates: "{{ 'yes' if housekeeping_server_env=='dev' else 'no' }}"
 housekeeping_yum_cron_apply_updates: "{{ 'yes' if housekeeping_server_env=='dev' else 'no' }}"
 checkmk_version: 1.5.0p19
-checkmk_control_host: 128.122.217.206
-checkmk_site_name: mysite
+checkmk_control_host: watchtower.rc.it.nyu.edu
+checkmk_site_name: dlts
 users: {}
 host_users: {}
