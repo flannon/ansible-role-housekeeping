@@ -41,3 +41,4 @@ checkmk_control_host: watchtower.rc.it.nyu.edu
 checkmk_site_name: dlts
 users: {}
 host_users: {}
+combined_user_settings: {}
