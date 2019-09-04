@@ -4,10 +4,8 @@
     url: "http://{{ checkmk_control_host }}/{{ checkmk_site_name }}/check_mk/agents/check-mk-agent-{{ checkmk_version }}-1.noarch.rpm"
     dest: "/tmp/check-mk-agent.rpm"
     force: False
-  when: ansible_facts['virtualization_type']|lower != "virtualbox"
 
 - name: Install checkmk agent
   yum:
     name: "/tmp/check-mk-agent.rpm"
     state: present
-  when: ansible_facts['virtualization_type']|lower != "virtualbox"

@@ -11,5 +11,10 @@
 
 - include_tasks: motd.yml
 
-- include_tasks: monitoring.yml
-  when: '"watchtower" not in group_names' # No need to install CheckMK agent on the CheckMK control host
+- include_tasks: monitoring.yml # Currently only Openstack hosts are supported
+  when:
+    - '"watchtower" not in group_names' # No need to install CheckMK agent on the CheckMK control host
+    - ansible_facts['virtualization_type']|lower != "virtualbox" # Exclude Vagrant setups
+#    - ansible_facts['virtualization_type']|lower != "xen" # Exclude AWS
+#    - ansible_facts['system_vendor']|lower != "Amazon EC2" # Exclude AWS
+    - ansible_facts['virtualization_type']|lower == "openstack" # Only include Openstack
